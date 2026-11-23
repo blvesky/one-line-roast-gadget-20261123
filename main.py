@@ -14,6 +14,9 @@ OUTPUT_PATH = os.environ.get("MAKEFUN_OUTPUT", "/output/entry.txt")
 
 
 def main() -> None:
+    # Gate: /output/entry.txt must be UTF-8 text of 1 to 200 characters.
+    assert 1 <= len(ROAST) <= 200, f"roast is {len(ROAST)} chars, must be 1-200"
+    assert ROAST.strip(), "roast must not be only whitespace"
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(ROAST)
